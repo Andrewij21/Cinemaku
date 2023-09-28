@@ -1,6 +1,17 @@
+import { useEffect } from "react";
 import avanger from "../../public/avanger.jpg";
+import { getMovieTrending } from "../api/movieApi";
 
 const Main = () => {
+  useEffect(() => {
+    getMovieTrending()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((e) => {
+        console.log(e.toString());
+      });
+  }, []);
   return (
     <main className="">
       <h2 className="text-2xl text-slate-200 mb-4">Movies</h2>
