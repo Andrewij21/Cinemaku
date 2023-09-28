@@ -1,10 +1,11 @@
+import Main from "./components/Main";
 import NavBar from "./components/Navbar";
 
 function App() {
   return (
-    <div className="bg-slate-800 min-h-screen">
+    <div className="bg-slate-800 min-h-screen font-mukta px-12 py-4">
       <NavBar />
-      <main></main>
+      <Main />
       <footer></footer>
     </div>
   );
