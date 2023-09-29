@@ -31,7 +31,7 @@ const Main = () => {
               className="items-start basis-1/6 h-auto rounded-xl overflow-hidden "
               key={movie.id}
             >
-              <div className="">
+              <div className="h-80 bg-black">
                 <img
                   src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                   // className=" bg-red-400 object-cover"
