@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import avanger from "../../public/avanger.jpg";
+// import avanger from "../../public/avanger.jpg";
 import { getMovieTrending } from "../api/movieApi";
 
 const Main = () => {
@@ -23,24 +23,32 @@ const Main = () => {
   console.log({ tranding });
   return (
     <main className="">
-      <h2 className="text-2xl text-slate-200 mb-4">Movies</h2>
+      <h2 className="text-2xl text-slate-200 mb-4">Tranding</h2>
       <div className="text-white flex flex-wrap  justify-start items-start gap-12 min-w-full">
         {tranding.map((movie) => {
           return (
             <div
-              className="shadow-lg items-start shadow-black rounded-xl w-1/6 h-auto overflow-hidden"
+              className="items-start basis-1/6 h-auto rounded-xl overflow-hidden "
               key={movie.id}
             >
-              <img
-                src={avanger}
-                // className=" bg-red-400 object-cover"
-                className=" w-full rounded-lg object-cover object-center"
-                alt={movie.title}
-              />
-              <div className="text-center p-4 leading-relaxed ">
-                <h4 className="">{movie.title}</h4>
-                <p>{movie.release_date}</p>
-                <p>{movie.vote_average}</p>
+              <div className="">
+                <img
+                  src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+                  // className=" bg-red-400 object-cover"
+                  className=" h-full w-full rounded-lg object-cover object-center"
+                  alt={movie.title}
+                />
+              </div>
+              <div className="text-left py-4 ">
+                <h4 className="inline-block ">
+                  <span className="text-ellipsis overflow-hidden">
+                    {movie.title}
+                  </span>
+                  <span className="inline-block ml-1 mb-3">
+                    ({movie.release_date.substr(0, 4)})
+                  </span>
+                  {/* <span className="block">{movie.vote_average}</span> */}
+                </h4>
               </div>
             </div>
           );
