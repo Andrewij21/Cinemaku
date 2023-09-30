@@ -2,7 +2,7 @@ import { AiOutlineUser } from "react-icons/ai";
 const NavBar = () => {
   return (
     <header className="mb-6">
-      <nav className=" py-4 flex justify-between  ">
+      <nav className=" py-4 flex justify-between w-full shadow-xl container items-center ">
         <h1 className="text-5xl uppercase tracking-wide text-rose-600 font-bold">
           Cinemaku
         </h1>
