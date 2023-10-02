@@ -31,7 +31,7 @@ const NavBar = () => {
             {/* <FaMagnifyingGlass /> */}
             <input
               type="text"
-              className="py-2 px-4 rounded-md outline-none text-black  hover:ring hover:ring-rose-600 
+              className="py-2 px-4 rounded-md outline-none text-black   
                focus:ring focus:ring-rose-600 w-full"
               placeholder="Search film..."
             />
