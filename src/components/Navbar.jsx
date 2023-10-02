@@ -4,7 +4,7 @@ const NavBar = () => {
   return (
     <header className="mb-6">
       <nav className=" py-4 flex justify-between w-full items-center">
-        <div className="flex-1 ">
+        <div className="flex-1">
           <div className="flex justify-between ">
             <h1 className="text-4xl uppercase tracking-wide text-rose-600 font-bold ">
               Cinemaku
@@ -12,8 +12,8 @@ const NavBar = () => {
             <button className="text-2xl text-white md:hidden rounded  p-2 focus:outline-none group">
               <AiOutlineMenu className="hover:text-rose-600 " />
 
-              <div className="absolute top-0 -right-0 h-screen w-1/3  opacity-0 bg-slate-700  group-focus:right-1 group-focus:opacity-100 transition-all duration-300">
-                <ul className="flex flex-col items-center w-full pt-10 text-base cursor-pointer">
+              <div className="absolute top-0 -right-0 h-screen w-1/3  opacity-0 bg-slate-700  group-focus:right-1 group-focus:opacity-100 transition-all duration-300 pointer-events-none">
+                <ul className="flex flex-col items-center w-full pt-10 text-base cursor-pointer group-focus:pointer-events-auto">
                   <li className="hover:bg-white hover:text-rose-600 py-4 px-6 w-full">
                     Home
                   </li>
