@@ -3,7 +3,7 @@ import { AiOutlineUser, AiOutlineMenu } from "react-icons/ai";
 const NavBar = () => {
   return (
     <header className="mb-6">
-      <nav className=" py-4 flex justify-between w-full  container  items-center ">
+      <nav className=" py-4 flex justify-between w-full items-center">
         <div className="flex-1 ">
           <div className="flex justify-between ">
             <h1 className="text-4xl uppercase tracking-wide text-rose-600 font-bold ">
