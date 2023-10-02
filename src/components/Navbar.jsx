@@ -1,10 +1,10 @@
 import { AiOutlineUser, AiOutlineMenu } from "react-icons/ai";
-import { FaMagnifyingGlass } from "react-icons/fa6";
+// import { FaMagnifyingGlass } from "react-icons/fa6";
 const NavBar = () => {
   return (
     <header className="mb-6">
       <nav className=" py-4 flex justify-between w-full  container items-center ">
-        <div className="flex-1   flex justify-between">
+        <div className="flex-1 ">
           <div className="flex ">
             <button className="text-2xl text-white md:hidden rounded  p-2 focus:outline-none group">
               <AiOutlineMenu className="hover:text-rose-600 " />
@@ -27,8 +27,14 @@ const NavBar = () => {
               Cinemaku
             </h1>
           </div>
-          <div className="self-center text-2xl text-white hover:text-rose-600 md:hidden">
-            <FaMagnifyingGlass />
+          <div className=" cursor-pointer  md:hidden px-2 py-4">
+            {/* <FaMagnifyingGlass /> */}
+            <input
+              type="text"
+              className="py-2 px-4 rounded-md outline-none text-black  hover:ring hover:ring-rose-600 
+               focus:ring focus:ring-rose-600 w-full"
+              placeholder="Search film..."
+            />
           </div>
         </div>
 
