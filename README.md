@@ -1,8 +1,8 @@
-# React + Vite
+# Cinemaku
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This website will help you find movie recomendation or latest tranding series.
 
-Currently, two official plugins are available:
+Tech i use:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@Tailwind](https://tailwindcss.com/docs/installation) for fast and easy styling 
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
