@@ -9,7 +9,7 @@ const NavBar = () => {
             <h1 className="text-4xl uppercase tracking-wide text-rose-600 font-bold ">
               Cinemaku
             </h1>
-            <button className="text-2xl text-white md:hidden rounded  p-2 focus:outline-none group">
+            <button className="text-2xl text-white md:hidden group">
               <AiOutlineMenu className="hover:text-rose-600 " />
 
               <div className="absolute top-0 -right-0 h-screen w-1/3  opacity-0 bg-slate-700  group-focus:right-1 group-focus:opacity-100 transition-all duration-300 pointer-events-none">
