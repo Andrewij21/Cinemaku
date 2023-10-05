@@ -11,19 +11,33 @@ const NavBar = () => {
             <h1 className="text-4xl uppercase tracking-wide text-rose-600 font-bold ">
               Cinemaku
             </h1>
-            <button className="text-white md:hidden group">
+            <button
+              className="text-white md:hidden group"
+              onClick={() => setMenuVisible(!menuVisible)}
+            >
               <AiOutlineMenu className="hover:text-rose-600 text-2xl" />
 
-              <div className="absolute top-0 -right-0 h-screen w-1/3  opacity-0 bg-slate-700  group-focus:right-1 group-focus:opacity-100 transition-all duration-300 pointer-events-none">
-                <ul className="flex flex-col items-center w-full pt-10 text-base cursor-pointer group-focus:pointer-events-auto">
+              <div
+                className="absolute top-0 right-0 h-screen w-1/3  opacity-0 bg-slate-700  group-focus:right-1 group-focus:opacity-100 transition-all duration-300 pointer-events-none"
+                // className={`${
+                //   menuVisible
+                //     ? "opacity-100 right-1 top-0"
+                //     : "opacity-0 right-0"
+                // } absolute h-screen w-1/3 bg-slate-700  transition-all duration-300  pointer-events-none`}
+              >
+                <ul
+                  className={`flex flex-col items-center w-full pt-10 text-base cursor-pointer ${
+                    menuVisible ? "pointer-events-auto" : "pointer-events-none"
+                  }`}
+                >
                   <li className="hover:bg-white hover:text-rose-600 py-4 px-6 w-full">
                     <a href="#home">Home</a>
                   </li>
                   <li className="hover:bg-white hover:text-rose-600 py-4 px-6 w-full">
-                    <a href="#popoular">Popular</a>
+                    <a href="#popular">Popular</a>
                   </li>
                   <li className="hover:bg-white hover:text-rose-600 py-4 px-6 w-full">
-                    <a href="#page">Page</a>
+                    <a href="#Series">series</a>
                   </li>
                 </ul>
               </div>
