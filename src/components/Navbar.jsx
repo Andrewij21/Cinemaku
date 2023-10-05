@@ -15,13 +15,13 @@ const NavBar = () => {
               <div className="absolute top-0 -right-0 h-screen w-1/3  opacity-0 bg-slate-700  group-focus:right-1 group-focus:opacity-100 transition-all duration-300 pointer-events-none">
                 <ul className="flex flex-col items-center w-full pt-10 text-base cursor-pointer group-focus:pointer-events-auto">
                   <li className="hover:bg-white hover:text-rose-600 py-4 px-6 w-full">
-                    Home
+                    <a href="#home">Home</a>
                   </li>
                   <li className="hover:bg-white hover:text-rose-600 py-4 px-6 w-full">
-                    About
+                    <a href="#about">About</a>
                   </li>
                   <li className="hover:bg-white hover:text-rose-600 py-4 px-6 w-full">
-                    Page
+                    <a href="#page">Page</a>
                   </li>
                 </ul>
               </div>
