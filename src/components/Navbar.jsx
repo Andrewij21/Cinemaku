@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { AiOutlineUser, AiOutlineMenu } from "react-icons/ai";
 // import { FaMagnifyingGlass } from "react-icons/fa6";
 const NavBar = () => {
+  const [menuVisible, setMenuVisible] = useState(false);
   return (
     <header className="mb-6">
       <nav className=" py-4 flex justify-between w-full items-center">
@@ -18,7 +20,7 @@ const NavBar = () => {
                     <a href="#home">Home</a>
                   </li>
                   <li className="hover:bg-white hover:text-rose-600 py-4 px-6 w-full">
-                    <a href="#about">About</a>
+                    <a href="#popoular">Popular</a>
                   </li>
                   <li className="hover:bg-white hover:text-rose-600 py-4 px-6 w-full">
                     <a href="#page">Page</a>
