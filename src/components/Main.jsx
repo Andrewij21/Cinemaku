@@ -1,19 +1,29 @@
 import { useEffect, useState } from "react";
 // import avanger from "../../public/avanger.jpg";
-import { getTrending } from "../api/mediaApi";
+import { getTrending, getMovie } from "../api/mediaApi";
 import MediaList from "./media/MediaList";
 
 const Main = () => {
   const [tranding, setTrending] = useState([]);
+  const [movies, setMovies] = useState([]);
   useEffect(() => {
     let isMounted = false;
     getTrending()
       .then((res) => {
         isMounted = true;
-        console.log(res);
+        const tranding = res.data.results.slice(0, 6);
+        // console.log({ tranding });
+        isMounted && setTrending(tranding);
+      })
+      .catch((e) => {
+        console.log(e.toString());
+      });
+    getMovie()
+      .then((res) => {
+        isMounted = true;
         const movies = res.data.results.slice(0, 6);
-        console.log({ movies });
-        isMounted && setTrending(movies);
+        // console.log({ movies });
+        isMounted && setMovies(movies);
       })
       .catch((e) => {
         console.log(e.toString());
@@ -22,6 +32,7 @@ const Main = () => {
     return () => (isMounted = false);
   }, []);
   console.log({ tranding });
+  console.log({ movies });
   return (
     <main className="">
       <MediaList tranding={tranding} title={"tranding"} />
