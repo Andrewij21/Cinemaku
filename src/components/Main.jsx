@@ -24,7 +24,7 @@ const Main = () => {
   console.log({ tranding });
   return (
     <main className="">
-      <MediaList tranding={tranding} />
+      <MediaList tranding={tranding} title={"tranding"} />
     </main>
   );
 };
