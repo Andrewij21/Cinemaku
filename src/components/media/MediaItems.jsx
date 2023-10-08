@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 const MediaItems = ({ movie }) => {
   return (
-    <div className="items-start h-auto rounded-xl overflow-hidden w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 p-2 flex flex-col">
+    <div className="items-start h-auto rounded-xl overflow-hidden w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 flex flex-col">
       <div className="h-80 mx-auto   ">
         <img
           src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
