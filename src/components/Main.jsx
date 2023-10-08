@@ -6,6 +6,10 @@ import MediaList from "./media/MediaList";
 const Main = () => {
   const [tranding, setTrending] = useState([]);
   const [movies, setMovies] = useState([]);
+  const contents = [
+    { topic: tranding, title: "tranding" },
+    { topic: movies, title: "movies" },
+  ];
   useEffect(() => {
     let isMounted = false;
     getTrending()
@@ -35,7 +39,11 @@ const Main = () => {
   console.log({ movies });
   return (
     <main className="">
-      <MediaList tranding={tranding} title={"tranding"} />
+      {contents.map((content, i) => {
+        return (
+          <MediaList tranding={content.topic} title={content.title} key={i} />
+        );
+      })}
     </main>
   );
 };
