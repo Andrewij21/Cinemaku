@@ -23,3 +23,13 @@ export const getMovie = async () => {
     console.log(error.toString());
   }
 };
+export const getTv = async () => {
+  try {
+    const movie = await axios.get(
+      `${movie_url}/discover/tv?&api_key=${movie_api}`
+    );
+    return movie;
+  } catch (error) {
+    console.log(error.toString());
+  }
+};
