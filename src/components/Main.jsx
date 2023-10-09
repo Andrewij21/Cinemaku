@@ -41,7 +41,7 @@ const Main = () => {
     <main className="">
       {contents.map((content, i) => {
         return (
-          <MediaList tranding={content.topic} title={content.title} key={i} />
+          <MediaList topic={content.topic} title={content.title} key={i} />
         );
       })}
     </main>
