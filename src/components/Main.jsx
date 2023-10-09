@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 // import avanger from "../../public/avanger.jpg";
-import { getTrending, getMovie } from "../api/mediaApi";
+import { getTrending, getMovie, getTv } from "../api/mediaApi";
 import MediaList from "./media/MediaList";
 
 const Main = () => {
   const [tranding, setTrending] = useState([]);
   const [movies, setMovies] = useState([]);
+  const [tv, setTv] = useState([]);
   const contents = [
     { topic: tranding, title: "tranding" },
     { topic: movies, title: "movies" },
+    { topic: tv, title: "tv" },
   ];
   useEffect(() => {
     let isMounted = false;
@@ -28,6 +30,16 @@ const Main = () => {
         const movies = res.data.results.slice(0, 6);
         // console.log({ movies });
         isMounted && setMovies(movies);
+      })
+      .catch((e) => {
+        console.log(e.toString());
+      });
+    getTv()
+      .then((res) => {
+        isMounted = true;
+        const tvSeries = res.data.results.slice(0, 6);
+        // console.log({ movies });
+        isMounted && setTv(tvSeries);
       })
       .catch((e) => {
         console.log(e.toString());
