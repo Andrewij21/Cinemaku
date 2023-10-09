@@ -25,7 +25,7 @@ const MediaItems = ({ movie }) => {
   );
 };
 MediaItems.propTypes = {
-  movie: PropTypes.array,
+  movie: PropTypes.object,
 };
 
 export default MediaItems;
