@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 // import avanger from "../../public/avanger.jpg";
 import { getTrending, getMovie, getTv } from "../api/mediaApi";
-import MediaList from "./media/MediaList";
+import MediaList from "../components/media/MediaList";
 
 const Main = () => {
   const [tranding, setTrending] = useState([]);
@@ -50,13 +50,13 @@ const Main = () => {
   console.log({ tranding });
   console.log({ movies });
   return (
-    <main className="">
+    <div className="">
       {contents.map((content, i) => {
         return (
           <MediaList topic={content.topic} title={content.title} key={i} />
         );
       })}
-    </main>
+    </div>
   );
 };
 

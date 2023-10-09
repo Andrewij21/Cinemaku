@@ -1,13 +1,14 @@
-import Main from "./components/Main";
-import NavBar from "./components/Navbar";
+import { Route, Routes } from "react-router-dom";
+import Layout from "./components/layout/Layout";
+import Home from "./page/Home";
 
 function App() {
   return (
-    <div className="bg-slate-800 min-h-screen font-mukta px-12 py-4">
-      <NavBar />
-      <Main />
-      <footer></footer>
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route path="" element={<Home />} />
+      </Route>
+    </Routes>
   );
 }
 
