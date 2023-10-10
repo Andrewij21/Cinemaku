@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const MediaList = ({ topic, title }) => {
   return (
-    <div className="mt-4">
+    <div className="mt-10">
       <h2 className="text-2xl text-slate-200 mb-4 text-center md:text-left capitalize relative">
         {title}
         <span>
