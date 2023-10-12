@@ -53,7 +53,12 @@ const Main = () => {
     <div className="">
       {contents.map((content, i) => {
         return (
-          <MediaList topic={content.topic} title={content.title} key={i} />
+          <MediaList
+            topic={content.topic}
+            title={content.title}
+            link={true}
+            key={i}
+          />
         );
       })}
     </div>

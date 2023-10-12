@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import MediaItems from "./MediaItems";
 import { Link } from "react-router-dom";
 
-const MediaList = ({ topic, title }) => {
+const MediaList = ({ topic, title, link }) => {
   return (
     <div className="mt-10">
       <h2 className="text-2xl text-slate-200 mb-4 text-center md:text-left capitalize relative">
@@ -11,7 +11,9 @@ const MediaList = ({ topic, title }) => {
           <Link
             to={"/seemore"}
             state={{ title }}
-            className="text-sm absolute right-0 bottom-0 cursor-pointer hover:text-rose-600"
+            className={`text-sm absolute right-0 bottom-0 cursor-pointer hover:text-rose-600 ${
+              link ? "" : "invisible"
+            }`}
           >
             see more
           </Link>
@@ -29,6 +31,7 @@ const MediaList = ({ topic, title }) => {
 MediaList.propTypes = {
   topic: PropTypes.array,
   title: PropTypes.string,
+  link: PropTypes.bool,
 };
 
 export default MediaList;

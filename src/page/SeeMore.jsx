@@ -42,7 +42,7 @@ const SeeMore = () => {
     <div>
       {/* {error && <div>{error}</div>} */}
       {loading && <div className="text-white text-2xl">Loading...</div>}
-      <MediaList topic={content} title={state.title} />
+      <MediaList topic={content} title={state.title} link={false} />
     </div>
   );
 };
