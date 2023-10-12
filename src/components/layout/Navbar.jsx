@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { AiOutlineUser, AiOutlineMenu } from "react-icons/ai";
+import { Link } from "react-router-dom";
+
 // import { FaMagnifyingGlass } from "react-icons/fa6";
 const NavBar = () => {
   const [menuVisible, setMenuVisible] = useState(false);
@@ -9,7 +11,7 @@ const NavBar = () => {
         <div className="flex-1">
           <div className="flex justify-between ">
             <h1 className="text-4xl uppercase tracking-wide text-rose-600 font-bold ">
-              Cinemaku
+              <Link to={"/"}>Cinemaku</Link>
             </h1>
             <button
               className="text-white md:hidden group"
@@ -31,7 +33,7 @@ const NavBar = () => {
                   }`}
                 >
                   <li className="hover:bg-white hover:text-rose-600 py-4 px-6 w-full">
-                    <a href="#home">Home</a>
+                    <a href="/">Home</a>
                   </li>
                   <li className="hover:bg-white hover:text-rose-600 py-4 px-6 w-full">
                     <a href="#popular">Popular</a>
@@ -56,7 +58,12 @@ const NavBar = () => {
 
         <ul className="hidden md:flex justify-center items-center gap-12 text-slate-200 cursor-pointer font-semibold">
           <li className="hover:text-rose-600 text-lg">
-            <a href="#">Home</a>
+            <Link
+              to={"/"}
+              // state={{ title }}
+            >
+              Home
+            </Link>
           </li>
           <li className="">
             <input
