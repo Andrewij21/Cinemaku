@@ -1,15 +1,18 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const MediaItems = ({ movie }) => {
   return (
     <div className="items-start h-auto overflow-hidden w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 flex flex-col">
       <div className="h-80 mx-auto  hover:scale-110 cursor-pointer ">
-        <img
-          src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-          // className=" bg-red-400 object-cover"
-          className=" h-full w-full rounded-xl  object-contain  object-center "
-          alt={movie.title || movie.name}
-        />
+        <Link to={"/detail"} state={{ movie }}>
+          <img
+            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+            // className=" bg-red-400 object-cover"
+            className=" h-full w-full rounded-xl  object-contain  object-center "
+            alt={movie.title || movie.name}
+          />
+        </Link>
       </div>
       <div className="text-center py-4 mx-auto">
         <h4 className="text-ellipsis overflow-hidden">
