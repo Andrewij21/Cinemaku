@@ -1,7 +1,9 @@
 import { useLocation } from "react-router-dom";
 
 const Detail = () => {
-  const { state: movie } = useLocation();
+  const {
+    state: { movie },
+  } = useLocation();
   console.log(movie);
   const cast = (
     <li>
@@ -50,10 +52,10 @@ const Detail = () => {
       // bg-cover bg-[url('https://image.tmdb.org/t/p/w500/TFTfzrkX8L7bAKUcch6qLmjpLu.jpg')] `}
       // alt={"film"}
       ></div>
-      <div className="flex items-center justify-center px-12 mt-12 gap-4 text-white  capitalize">
+      <div className="flex items-center justify-center px-12 mt-12 gap-4 text-white capitalize">
         <div className="basis-1/4 min-h-[28rem]">
           <img
-            src={`https://image.tmdb.org/t/p/w500/NNxYkU70HPurnNCSiCjYAmacwm.jpg`}
+            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
             // className=" bg-red-400 object-cover"
             className=" h-full mx-auto rounded-xl object-contain object-center"
             alt={"film"}
@@ -61,7 +63,7 @@ const Detail = () => {
         </div>
         <div className="basis-1/2 ">
           <h2 className="text-4xl min-w-fit tracking-wider font-semibold">
-            Mission: Impossible - Dead Reckoning Part One
+            {movie.title}
           </h2>
           {/* list of category */}
           <ul className="flex flex-row pt-4 capitalize gap-2">
@@ -77,7 +79,7 @@ const Detail = () => {
           </ul>
           <div className="py-4">
             <p className="line-clamp-4 ">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              {/* Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Repudiandae, iusto adipisci? Consectetur accusamus sed illum ea
               commodi optio repudiandae ipsam. Lorem ipsum dolor sit amet
               consectetur, adipisicing elit. Pariatur, neque est dolore magnam
@@ -85,7 +87,8 @@ const Detail = () => {
               sit amet consectetur, adipisicing elit. Rem repellendus excepturi
               odit, nisi ut dignissimos accusamus maxime id ratione error,
               aliquid rerum, ex iste fugiat quaerat voluptas dolore distinctio
-              commodi?
+              commodi? */}
+              {movie.overview}
             </p>
           </div>
           <div className="">
