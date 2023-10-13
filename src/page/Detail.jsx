@@ -1,4 +1,8 @@
+import { useLocation } from "react-router-dom";
+
 const Detail = () => {
+  const { state: movie } = useLocation();
+  console.log(movie);
   const cast = (
     <li>
       <div className="h-36 mx-auto">
