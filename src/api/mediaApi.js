@@ -33,3 +33,13 @@ export const getTv = async () => {
     console.log(error.toString());
   }
 };
+export const getMovieCredits = async (movie_id) => {
+  try {
+    const movie = await axios.get(
+      `${movie_url}/movie/${movie_id}/credits?&api_key=${movie_api}`
+    );
+    return movie;
+  } catch (error) {
+    console.log(error.toString());
+  }
+};
