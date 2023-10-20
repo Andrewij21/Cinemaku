@@ -6,8 +6,8 @@ const Detail = () => {
   } = useLocation();
   console.log(movie);
   const cast = (
-    <li>
-      <div className="h-36 mx-auto">
+    <li className="">
+      <div className="h-36 mx-auto ">
         <img
           src={`https://image.tmdb.org/t/p/w500/NNxYkU70HPurnNCSiCjYAmacwm.jpg`}
           // className=" bg-red-400 object-cover"
@@ -15,7 +15,7 @@ const Detail = () => {
           alt={"film"}
         />
       </div>
-      <div className="py-2">
+      <div className="pt-2">
         <h4 className="overflow-hidden">maximus</h4>
       </div>
     </li>
@@ -52,7 +52,7 @@ const Detail = () => {
       // bg-cover bg-[url('https://image.tmdb.org/t/p/w500/TFTfzrkX8L7bAKUcch6qLmjpLu.jpg')] `}
       // alt={"film"}
       ></div>
-      <div className="flex items-center justify-center px-12 mt-12 gap-4 text-white capitalize">
+      <div className="flex justify-center px-12 mt-12 gap-4 text-white capitalize">
         <div className="basis-1/4 min-h-[28rem]">
           <img
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
@@ -61,7 +61,7 @@ const Detail = () => {
             alt={"film"}
           />
         </div>
-        <div className="basis-1/2 ">
+        <div className="basis-1/2 flex flex-col justify-between">
           <h2 className="text-4xl min-w-fit tracking-wider font-semibold">
             {movie.title}
           </h2>
@@ -77,7 +77,7 @@ const Detail = () => {
               action
             </li>
           </ul>
-          <div className="py-4">
+          <div className="py-2">
             <p className="line-clamp-4 ">
               {/* Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Repudiandae, iusto adipisci? Consectetur accusamus sed illum ea
@@ -93,7 +93,7 @@ const Detail = () => {
           </div>
           <div className="">
             <h4 className="text-xl mb-2">casts</h4>
-            <ul className="flex flex-row items-start gap-2">
+            <ul className="flex flex-row items-end gap-2">
               {cast}
               {cast}
               {cast}
