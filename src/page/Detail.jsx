@@ -1,10 +1,20 @@
+import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { getMovieCredits } from "../api/mediaApi";
 
 const Detail = () => {
   const {
     state: { movie },
   } = useLocation();
   console.log(movie);
+
+  useEffect(() => {
+    getMovieCredits(movie.id).then((res) => {
+      const casts = res.data.cast.slice(0, 3);
+      console.log("noh", casts);
+    });
+  });
+
   const cast = (
     <li className="">
       <div className="h-36 mx-auto ">
@@ -52,7 +62,7 @@ const Detail = () => {
       // bg-cover bg-[url('https://image.tmdb.org/t/p/w500/TFTfzrkX8L7bAKUcch6qLmjpLu.jpg')] `}
       // alt={"film"}
       ></div>
-      <div className="flex justify-center px-12 mt-12 gap-4 text-white capitalize">
+      <div className="flex justify-center md:px-12 mt-12 gap-4 text-white capitalize">
         <div className="basis-1/4 min-h-[28rem]">
           <img
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
