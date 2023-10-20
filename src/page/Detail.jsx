@@ -16,7 +16,7 @@ const Detail = () => {
       setCredits(casts);
     });
     getMovieDetails(movie.id).then((res) => {
-      const detail = res.data.;
+      const detail = res.data;
       setDetails(detail);
       console.log("noh", res);
     });
