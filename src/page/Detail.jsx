@@ -84,15 +84,16 @@ const Detail = () => {
           </h2>
           {/* list of category */}
           <ul className="flex flex-row pt-4 capitalize gap-2">
-            <li className="rounded-full px-4 py-1 outline outline-white text-sm">
-              comady
-            </li>
-            <li className="rounded-full px-4 py-1 outline outline-white text-sm">
-              drama
-            </li>
-            <li className="rounded-full px-4 py-1 outline outline-white text-sm">
-              action
-            </li>
+            {details.genres.map((genre, i) => {
+              return (
+                <li
+                  className="rounded-full px-4 py-1 outline outline-white text-sm"
+                  key={i}
+                >
+                  {genre.name}
+                </li>
+              );
+            })}
           </ul>
           <div className="py-6">
             <p className="line-clamp-4 ">
