@@ -26,6 +26,7 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    env:
       VITE_MOVIE_BASE_URL: ${{vars.VITE_MOVIE_BASE_URL}}
       VITE_MOVIE_API: ${{vars.VITE_MOVIE_API}}
     runs-on: ubuntu-latest
