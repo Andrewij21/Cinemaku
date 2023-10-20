@@ -26,8 +26,12 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+      VITE_MOVIE_BASE_URL: ${{vars.VITE_MOVIE_BASE_URL}}
+      VITE_MOVIE_API: ${{vars.VITE_MOVIE_API}}
     runs-on: ubuntu-latest
     steps:
+      - name: show variabels
+        run: echo my env is ${{VITE_MOVIE_BASE_URL}}
       - name: Checkout
         uses: actions/checkout@v3
       - name: Set up Node
