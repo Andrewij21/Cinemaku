@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { getMovieCredits } from "../api/mediaApi";
 
@@ -7,29 +7,30 @@ const Detail = () => {
     state: { movie },
   } = useLocation();
   console.log(movie);
-
+  const [credits, setCredits] = useState([]);
   useEffect(() => {
     getMovieCredits(movie.id).then((res) => {
-      const casts = res.data.cast.slice(0, 3);
+      const casts = res.data.cast.slice(0, 6);
+      setCredits(casts);
       console.log("noh", casts);
     });
   });
 
-  const cast = (
-    <li className="">
-      <div className="h-36 mx-auto ">
-        <img
-          src={`https://image.tmdb.org/t/p/w500/NNxYkU70HPurnNCSiCjYAmacwm.jpg`}
-          // className=" bg-red-400 object-cover"
-          className=" h-full w-full rounded-md object-contain object-center"
-          alt={"film"}
-        />
-      </div>
-      <div className="pt-2">
-        <h4 className="overflow-hidden">maximus</h4>
-      </div>
-    </li>
-  );
+  // const cast = (
+  //   <li className="">
+  //     <div className="h-36 mx-auto ">
+  //       <img
+  //         src={`https://image.tmdb.org/t/p/w500/NNxYkU70HPurnNCSiCjYAmacwm.jpg`}
+  //         // className=" bg-red-400 object-cover"
+  //         className=" h-full w-full rounded-md object-contain object-center"
+  //         alt={"film"}
+  //       />
+  //     </div>
+  //     <div className="pt-2">
+  //       <h4 className="overflow-hidden">maximus</h4>
+  //     </div>
+  //   </li>
+  // );
   return (
     <div
     //   className={`h-screen w-full max-h-[32rem]
@@ -104,9 +105,26 @@ const Detail = () => {
           <div className="">
             <h4 className="text-xl mb-2">casts</h4>
             <ul className="flex flex-row items-end gap-2">
+              {credits.map((credit, i) => {
+                return (
+                  <li className="" key={i}>
+                    <div className="h-36 mx-auto ">
+                      <img
+                        src={`https://image.tmdb.org/t/p/w500/${credit.profile_path}`}
+                        // className=" bg-red-400 object-cover"
+                        className=" h-full w-full rounded-md object-contain object-center"
+                        alt={"film"}
+                      />
+                    </div>
+                    <div className="pt-2">
+                      <h4 className="overflow-hidden">{credit.name}</h4>
+                    </div>
+                  </li>
+                );
+              })}
+              {/* {cast}
               {cast}
-              {cast}
-              {cast}
+              {cast} */}
             </ul>
           </div>
         </div>
