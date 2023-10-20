@@ -14,6 +14,7 @@ const Detail = () => {
     getMovieCredits(movie.id).then((res) => {
       const casts = res.data.cast.slice(0, 6);
       setCredits(casts);
+      console.log("casr", casts);
     });
     getMovieDetails(movie.id).then((res) => {
       const detail = res.data;
@@ -72,7 +73,7 @@ const Detail = () => {
       <div className="flex justify-center md:px-12 mt-12 gap-4 text-white capitalize">
         <div className="basis-1/4">
           <img
-            src={`https://image.tmdb.org/t/p/w500${details.poster_path}`}
+            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
             // className=" bg-red-400 object-cover"
             className=" min-h-[28rem] mx-auto rounded-xl object-contain object-center"
             alt={"film"}
@@ -80,20 +81,21 @@ const Detail = () => {
         </div>
         <div className="basis-1/2 flex flex-col justify-between">
           <h2 className="text-4xl min-w-fit tracking-wider font-semibold">
-            {details.title}
+            {movie.name || movie.title}
           </h2>
           {/* list of category */}
           <ul className="flex flex-row pt-4 capitalize gap-2">
-            {details.genres.map((genre, i) => {
-              return (
-                <li
-                  className="rounded-full px-4 py-1 outline outline-white text-sm"
-                  key={i}
-                >
-                  {genre.name}
-                </li>
-              );
-            })}
+            {details &&
+              details.genres.map((genre, i) => {
+                return (
+                  <li
+                    className="rounded-full px-4 py-1 outline outline-white text-sm"
+                    key={i}
+                  >
+                    {genre.name}
+                  </li>
+                );
+              })}
           </ul>
           <div className="py-6">
             <p className="line-clamp-4 ">
@@ -106,7 +108,7 @@ const Detail = () => {
               odit, nisi ut dignissimos accusamus maxime id ratione error,
               aliquid rerum, ex iste fugiat quaerat voluptas dolore distinctio
               commodi? */}
-              {details.overview}
+              {movie.overview || details.overview}
             </p>
           </div>
           <div className="">
