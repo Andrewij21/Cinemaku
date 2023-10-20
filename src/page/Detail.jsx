@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { getMovieCredits } from "../api/mediaApi";
+import { getMovieCredits, getMovieDetails } from "../api/mediaApi";
 
 const Detail = () => {
   const {
@@ -8,13 +8,19 @@ const Detail = () => {
   } = useLocation();
   console.log(movie);
   const [credits, setCredits] = useState([]);
+  const [details, setDetails] = useState(null);
+
   useEffect(() => {
     getMovieCredits(movie.id).then((res) => {
       const casts = res.data.cast.slice(0, 6);
       setCredits(casts);
-      console.log("noh", casts);
     });
-  });
+    getMovieDetails(movie.id).then((res) => {
+      const detail = res.data.;
+      setDetails(detail);
+      console.log("noh", res);
+    });
+  }, [movie.id]);
 
   // const cast = (
   //   <li className="">
