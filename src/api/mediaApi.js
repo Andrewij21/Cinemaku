@@ -43,3 +43,13 @@ export const getMovieCredits = async (movie_id) => {
     console.log(error.toString());
   }
 };
+export const getMovieDetails = async (movie_id) => {
+  try {
+    const movie = await axios.get(
+      `${movie_url}/movie/${movie_id}?&api_key=${movie_api}`
+    );
+    return movie;
+  } catch (error) {
+    console.log(error.toString());
+  }
+};
