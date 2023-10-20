@@ -72,7 +72,7 @@ const Detail = () => {
       <div className="flex justify-center md:px-12 mt-12 gap-4 text-white capitalize">
         <div className="basis-1/4">
           <img
-            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+            src={`https://image.tmdb.org/t/p/w500${details.poster_path}`}
             // className=" bg-red-400 object-cover"
             className=" min-h-[28rem] mx-auto rounded-xl object-contain object-center"
             alt={"film"}
@@ -80,7 +80,7 @@ const Detail = () => {
         </div>
         <div className="basis-1/2 flex flex-col justify-between">
           <h2 className="text-4xl min-w-fit tracking-wider font-semibold">
-            {movie.title}
+            {details.title}
           </h2>
           {/* list of category */}
           <ul className="flex flex-row pt-4 capitalize gap-2">
@@ -105,7 +105,7 @@ const Detail = () => {
               odit, nisi ut dignissimos accusamus maxime id ratione error,
               aliquid rerum, ex iste fugiat quaerat voluptas dolore distinctio
               commodi? */}
-              {movie.overview}
+              {details.overview}
             </p>
           </div>
           <div className="">
