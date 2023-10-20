@@ -64,11 +64,11 @@ const Detail = () => {
       // alt={"film"}
       ></div>
       <div className="flex justify-center md:px-12 mt-12 gap-4 text-white capitalize">
-        <div className="basis-1/4 min-h-[28rem]">
+        <div className="basis-1/4">
           <img
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
             // className=" bg-red-400 object-cover"
-            className=" h-full mx-auto rounded-xl object-contain object-center"
+            className=" min-h-[28rem] mx-auto rounded-xl object-contain object-center"
             alt={"film"}
           />
         </div>
@@ -88,7 +88,7 @@ const Detail = () => {
               action
             </li>
           </ul>
-          <div className="py-2">
+          <div className="py-6">
             <p className="line-clamp-4 ">
               {/* Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Repudiandae, iusto adipisci? Consectetur accusamus sed illum ea
@@ -116,7 +116,7 @@ const Detail = () => {
                         alt={"film"}
                       />
                     </div>
-                    <div className="pt-2">
+                    <div className="pt-2 h-12">
                       <h4 className="overflow-hidden">{credit.name}</h4>
                     </div>
                   </li>
