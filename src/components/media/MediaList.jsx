@@ -28,7 +28,7 @@ const MediaList = ({ topic, title }) => {
           className="text-white flex gap-x-5  "
         >
           {topic.map((movie) => {
-            return <MediaItems key={movie.id} movie={movie} />;
+            return <MediaItems key={movie.id} movie={movie} topic={title} />;
           })}
         </motion.div>
       </motion.div>

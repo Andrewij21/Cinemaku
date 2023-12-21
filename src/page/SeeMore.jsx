@@ -37,7 +37,7 @@ const SeeMore = () => {
       </h2>
       <motion.div className="text-white flex flex-wrap justify-center gap-x-2 gap-y-4">
         {content.map((movie) => {
-          return <MediaItems key={movie.id} movie={movie} />;
+          return <MediaItems key={movie.id} movie={movie} topic={title} />;
         })}
       </motion.div>
     </div>

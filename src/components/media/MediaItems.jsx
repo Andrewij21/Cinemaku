@@ -7,7 +7,7 @@ const cardVariants = {
   visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
 };
 
-const MediaItems = ({ movie }) => {
+const MediaItems = ({ movie, topic }) => {
   return (
     <motion.div
       variants={cardVariants}
@@ -18,7 +18,10 @@ const MediaItems = ({ movie }) => {
       className="max-w-[220px] min-w-[220px]"
     >
       <motion.div className="h-80 cursor-pointer rounded-lg overflow-clip">
-        <Link to={"/detail"} state={{ movie }}>
+        <Link
+          to={"/detail"}
+          state={{ id: movie.id, type: movie.media_type || topic }}
+        >
           <motion.img
             whileHover={{ scale: 1.1 }}
             src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
@@ -42,6 +45,7 @@ const MediaItems = ({ movie }) => {
 };
 MediaItems.propTypes = {
   movie: PropTypes.object,
+  topic: PropTypes.string,
 };
 
 export default MediaItems;
