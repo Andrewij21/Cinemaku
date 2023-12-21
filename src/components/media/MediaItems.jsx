@@ -1,19 +1,33 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+
+const cardVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
+};
 
 const MediaItems = ({ movie }) => {
   return (
-    <div className="max-w-[220px] min-w-[220px]">
-      <div className="h-80 hover:scale-110 cursor-pointe">
+    <motion.div
+      variants={cardVariants}
+      initial="hidden"
+      // animate="visible"
+      exit="hidden"
+      whileInView="visible"
+      className="max-w-[220px] min-w-[220px]"
+    >
+      <motion.div className="h-80 cursor-pointer rounded-lg overflow-clip">
         <Link to={"/detail"} state={{ movie }}>
-          <img
+          <motion.img
+            whileHover={{ scale: 1.1 }}
             src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
             // className=" bg-red-400 object-cover"
-            className=" h-full w-full rounded-xl object-fill "
+            className=" h-full w-full object-fill"
             alt={movie.title || movie.name}
           />
         </Link>
-      </div>
+      </motion.div>
       <div className="text-center py-4 mx-auto">
         <h4 className="text-ellipsis overflow-hidden">
           {movie.title || movie.name}
@@ -23,7 +37,7 @@ const MediaItems = ({ movie }) => {
         </span>
         <span className="block">{movie.vote_average}</span>
       </div>
-    </div>
+    </motion.div>
   );
 };
 MediaItems.propTypes = {
