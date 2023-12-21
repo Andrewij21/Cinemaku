@@ -12,6 +12,10 @@ export default function Search() {
     setSearchItem(searchTerm);
   };
 
+  const handleContent = () => {
+    setSearchItem([]);
+  };
+
   useEffect(() => {
     search(searchItem)
       .then((res) => {
@@ -40,7 +44,10 @@ export default function Search() {
         placeholder="Search film..."
       />
       {searchContent.length !== 0 && (
-        <SearchList searchContent={searchContent} />
+        <SearchList
+          searchContent={searchContent}
+          contentHandler={handleContent}
+        />
       )}
     </div>
   );

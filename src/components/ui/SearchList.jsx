@@ -26,17 +26,18 @@ import PropTypes from "prop-types";
 // ];
 
 SearchList.propTypes = {
+  contentHandler: PropTypes.func,
   searchContent: PropTypes.array,
 };
 
-export default function SearchList({ searchContent }) {
+export default function SearchList({ searchContent, contentHandler }) {
   return (
     <div className="absolute bg-slate-500 w-full px-2 py-4 rounded-lg mt-2 z-10">
       <ul className="space-y-4">
         {searchContent.map((item, i) => {
           return (
             <li key={i}>
-              <SearchItem item={item} />
+              <SearchItem item={item} contentHandler={contentHandler} />
             </li>
           );
         })}
