@@ -22,7 +22,7 @@ const MediaItems = ({ movie }) => {
           <motion.img
             whileHover={{ scale: 1.1 }}
             src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-            // className=" bg-red-400 object-cover"
+            // src={`https://image.tmdb.org/t/p/w500/upmXGc1QovmPBU0mQJR2re6ruKd.jpg`}
             className=" h-full w-full object-fill"
             alt={movie.title || movie.name}
           />
