@@ -73,3 +73,13 @@ export const getTvDetails = async (tv_id) => {
     console.log(error.toString());
   }
 };
+export const search = async (query) => {
+  try {
+    const tv = await axios.get(
+      `${movie_url}/search/multi?query=${query}&api_key=${movie_api}`
+    );
+    return tv;
+  } catch (error) {
+    console.log(error.toString());
+  }
+};
