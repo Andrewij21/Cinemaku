@@ -13,7 +13,16 @@ const Detail = () => {
   } = useLocation();
   const [credits, setCredits] = useState([]);
   const [details, setDetails] = useState("");
+  const [width, setWidth] = useState(window.innerWidth);
+  const updateDimensions = () => {
+    setWidth(window.innerWidth);
+    // console.log(width);
+  };
 
+  useEffect(() => {
+    window.addEventListener("resize", updateDimensions);
+    return () => window.removeEventListener("resize", updateDimensions);
+  }, []);
   useEffect(() => {
     // console.log("masuk", id, type);
 
@@ -22,6 +31,7 @@ const Detail = () => {
         .then((res) => {
           const detail = res.data;
           setDetails(detail);
+          console.log("movie masuk", detail);
         })
         .catch((e) => console.error({ e }));
       getMovieCredits(id).then((res) => {
@@ -29,11 +39,12 @@ const Detail = () => {
         setCredits(casts);
       });
     } else {
-      console.log("tv masuk", id, type);
+      // console.log("tv masuk", id, type);
       getTvDetails(id)
         .then((res) => {
           const detail = res.data;
           setDetails(detail);
+          console.log("tv masuk", detail);
         })
         .catch((e) => console.error({ e }));
       getTvCredits(id)
@@ -46,10 +57,13 @@ const Detail = () => {
   }, [id, type]);
 
   return (
-    <div className="flex justify-start text-white capitalize py-8 w-full  ">
-      <div className="min-h-[30rem] max-h-[30rem] min-w-[20rem] max-w-[20rem] rounded-lg overflow-clip mr-4">
+    <div className="flex justify-start text-white capitalize py-8 w-full gap-y-8 flex-col md:flex-row">
+      <div className="bg-black max-h-[30rem] w-full md:min-w-[20rem] md:max-w-[20rem] rounded-lg overflow-clip mr-4">
         <img
-          src={`https://image.tmdb.org/t/p/w500/${details.poster_path}`}
+          src={`https://image.tmdb.org/t/p/w500/${
+            width > 767 ? details.poster_path : details.backdrop_path
+          }`}
+          // src={`https://image.tmdb.org/t/p/w500/4W2sH4CXzJ98ScuLGRij1KakzSv.jpg`}
           className="h-full w-full object-fill"
           alt={"film"}
         />
@@ -59,12 +73,12 @@ const Detail = () => {
           <h2 className="text-4xl min-w-fit tracking-wider font-semibold">
             {details.name || details.title}
           </h2>
-          <ul className="flex flex-row capitalize gap-x-2">
+          <ul className="flex flex-row flex-wrap capitalize gap-x-2 gap-y-4">
             {details &&
               details.genres.map((genre, i) => {
                 return (
                   <li
-                    className="rounded-full px-4 py-1 outline outline-white text-sm"
+                    className="rounded-full px-4 py-2 truncate outline outline-white text-xs lg:text-sm"
                     key={i}
                   >
                     {genre.name}
@@ -74,9 +88,9 @@ const Detail = () => {
           </ul>
           <p className="line-clamp-4 ">{details.overview || "no overview"}</p>
         </div>
-        <div className="min-h-[15rem]">
+        <div className="min-h-[15rem] mt-6">
           <h4 className="text-xl mb-2">casts</h4>
-          <ul className="flex gap-x-2">
+          <ul className="flex gap-x-2 flex-wrap">
             {credits.map((credit, i) => {
               return (
                 <li className="" key={i}>
