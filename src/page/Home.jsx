@@ -17,7 +17,7 @@ const Main = () => {
     getTrending()
       .then((res) => {
         isMounted = true;
-        const tranding = res.data.results.slice(0, 12);
+        const tranding = res.data.results.slice(0, 10);
         // console.log({ tranding });
         isMounted && setTrending(tranding);
       })
@@ -27,7 +27,7 @@ const Main = () => {
     getMovie()
       .then((res) => {
         isMounted = true;
-        const movies = res.data.results.slice(0, 12);
+        const movies = res.data.results.slice(0, 10);
         // console.log({ movies });
         isMounted && setMovies(movies);
       })
@@ -37,7 +37,7 @@ const Main = () => {
     getTv()
       .then((res) => {
         isMounted = true;
-        const tvSeries = res.data.results.slice(0, 12);
+        const tvSeries = res.data.results.slice(0, 10);
         // console.log({ movies });
         isMounted && setTv(tvSeries);
       })
