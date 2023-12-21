@@ -8,7 +8,7 @@ const MediaList = ({ topic, title }) => {
   const carousel = useRef(null);
 
   return (
-    <div className="mt-10">
+    <div className="mt-10 min-h-[500px]">
       <div className="flex justify-between items-center text-slate-200">
         <h2 className="text-2xl mb-4 text-center md:text-left capitalize">
           {title}
