@@ -1,48 +1,45 @@
 import PropTypes from "prop-types";
-import MediaList from "../components/media/MediaList";
 import { useLocation } from "react-router-dom";
+import { motion } from "framer-motion";
+import MediaItems from "../components/media/MediaItems";
 import { useEffect, useState } from "react";
-import axios from "axios";
-const URL = {
-  tranding: "/trending/all/day",
-  movies: "/discover/movie",
-  tv: "/discover/tv",
+import { getTrending, getTv, getMovie } from "../api/mediaApi";
+
+const contents = {
+  trending: getTrending(),
+  tv: getTv(),
+  movies: getMovie(),
 };
-const movie_url = import.meta.env.VITE_MOVIE_BASE_URL;
-const movie_api = import.meta.env.VITE_MOVIE_API;
+
 const SeeMore = () => {
-  const { state } = useLocation();
   const [content, setContent] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const { state } = useLocation();
   const title = state.title || "";
   useEffect(() => {
-    let isMounted = true;
-    setLoading(true);
-    const getPhoto = async () => {
-      try {
-        const { data } = await axios.get(
-          `${movie_url}${URL[title]}?&api_key=${movie_api}`
-        );
-
-        isMounted && setContent(data.results);
-        console.log(data);
-        // setCount(data.pagination.totalPages);
-        setLoading(false);
-      } catch (error) {
-        console.error(error);
-        setContent([]);
-      }
-    };
-    getPhoto();
-    return () => {
-      isMounted = false;
-    };
+    let isMounted = false;
+    contents[title]
+      .then((res) => {
+        isMounted = true;
+        window.scrollTo(0, 0);
+        const payload = res.data.results;
+        isMounted && setContent(payload);
+      })
+      .catch((e) => {
+        console.log(e.toString());
+      });
+    return () => (isMounted = false);
   }, [title]);
+
   return (
     <div>
-      {/* {error && <div>{error}</div>} */}
-      {loading && <div className="text-white text-2xl">Loading...</div>}
-      <MediaList topic={content} title={state.title} link={false} />
+      <h2 className="text-2xl mb-6 py-4 text-center capitalize text-white">
+        {title}
+      </h2>
+      <motion.div className="text-white flex flex-wrap justify-center gap-x-2 gap-y-4">
+        {content.map((movie) => {
+          return <MediaItems key={movie.id} movie={movie} />;
+        })}
+      </motion.div>
     </div>
   );
 };
