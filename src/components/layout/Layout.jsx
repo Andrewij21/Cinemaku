@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 
 function App() {
   return (
-    <div className="bg-slate-800 min-h-screen font-mukta px-12 py-4">
+    <div className="bg-slate-800 min-h-screen font-mukta px-12">
       <NavBar />
       <main>
         <Outlet />

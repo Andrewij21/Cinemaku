@@ -1,95 +1,85 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { getMovieCredits, getMovieDetails } from "../api/mediaApi";
+import {
+  getMovieCredits,
+  getMovieDetails,
+  getTvCredits,
+  getTvDetails,
+} from "../api/mediaApi";
+import whiteBg from "../assets/White_background.png";
 
 const Detail = () => {
   const {
-    state: { movie },
+    state: { id, type },
   } = useLocation();
-  console.log(movie);
   const [credits, setCredits] = useState([]);
-  const [details, setDetails] = useState(null);
+  const [details, setDetails] = useState("");
+  const [width, setWidth] = useState(window.innerWidth);
+  const updateDimensions = () => {
+    setWidth(window.innerWidth);
+    // console.log(width);
+  };
 
   useEffect(() => {
-    getMovieCredits(movie.id).then((res) => {
-      const casts = res.data.cast.slice(0, 6);
-      setCredits(casts);
-      console.log("casr", casts);
-    });
-    getMovieDetails(movie.id).then((res) => {
-      const detail = res.data;
-      setDetails(detail);
-      console.log("noh", res);
-    });
-  }, [movie.id]);
+    window.addEventListener("resize", updateDimensions);
+    return () => window.removeEventListener("resize", updateDimensions);
+  }, []);
+  useEffect(() => {
+    // console.log("masuk", id, type);
 
-  // const cast = (
-  //   <li className="">
-  //     <div className="h-36 mx-auto ">
-  //       <img
-  //         src={`https://image.tmdb.org/t/p/w500/NNxYkU70HPurnNCSiCjYAmacwm.jpg`}
-  //         // className=" bg-red-400 object-cover"
-  //         className=" h-full w-full rounded-md object-contain object-center"
-  //         alt={"film"}
-  //       />
-  //     </div>
-  //     <div className="pt-2">
-  //       <h4 className="overflow-hidden">maximus</h4>
-  //     </div>
-  //   </li>
-  // );
+    if (type != "tv") {
+      getMovieDetails(id)
+        .then((res) => {
+          const detail = res.data;
+          setDetails(detail);
+          console.log("movie masuk", detail);
+        })
+        .catch((e) => console.error({ e }));
+      getMovieCredits(id).then((res) => {
+        const casts = res.data.cast.slice(0, 6);
+        setCredits(casts);
+      });
+    } else {
+      // console.log("tv masuk", id, type);
+      getTvDetails(id)
+        .then((res) => {
+          const detail = res.data;
+          setDetails(detail);
+          console.log("tv masuk", detail);
+        })
+        .catch((e) => console.error({ e }));
+      getTvCredits(id)
+        .then((res) => {
+          const casts = res.data.cast.slice(0, 6);
+          setCredits(casts);
+        })
+        .catch((e) => console.error({ e }));
+    }
+  }, [id, type]);
+
   return (
-    <div
-    //   className={`h-screen w-full max-h-[32rem]
-    // p-24
-    // relative
-    // overflow-hidden
-    // block
-    // z-10
-
-    // bg-no-repeat
-    // bg-center
-    // bg-cover bg-[url('https://image.tmdb.org/t/p/w500/TFTfzrkX8L7bAKUcch6qLmjpLu.jpg')]
-
-    // before:absolute
-    // before:inset-0
-    // before:block
-    // before:bg-gradient-to-t
-    // before:from-black
-    // before:z-[-5]
-
-    // `}
-    >
-      <div
-      // src={`https://image.tmdb.org/t/p/w500/NNxYkU70HPurnNCSiCjYAmacwm.jpg`}
-      // className=" bg-red-400 object-cover"
-      // className={`h-screen w-full max-h-[32rem]
-      // relative
-      // overflow-hidden
-      // block
-      // bg-cover bg-[url('https://image.tmdb.org/t/p/w500/TFTfzrkX8L7bAKUcch6qLmjpLu.jpg')] `}
-      // alt={"film"}
-      ></div>
-      <div className="flex justify-center md:px-12 mt-12 gap-4 text-white capitalize">
-        <div className="basis-1/4">
-          <img
-            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-            // className=" bg-red-400 object-cover"
-            className=" min-h-[28rem] mx-auto rounded-xl object-contain object-center"
-            alt={"film"}
-          />
-        </div>
-        <div className="basis-1/2 flex flex-col justify-between">
+    <div className="flex justify-start text-white capitalize py-8 w-full gap-y-8 flex-col md:flex-row">
+      <div className="bg-black max-h-[30rem] w-full md:min-w-[20rem] md:max-w-[20rem] rounded-lg overflow-clip mr-4">
+        <img
+          src={`https://image.tmdb.org/t/p/w500/${
+            width > 767 ? details.poster_path : details.backdrop_path
+          }`}
+          // src={`https://image.tmdb.org/t/p/w500/4W2sH4CXzJ98ScuLGRij1KakzSv.jpg`}
+          className="h-full w-full object-fill"
+          alt={"film"}
+        />
+      </div>
+      <div className="flex flex-col justify-between">
+        <div className="flex flex-col gap-y-8">
           <h2 className="text-4xl min-w-fit tracking-wider font-semibold">
-            {movie.name || movie.title}
+            {details.name || details.title}
           </h2>
-          {/* list of category */}
-          <ul className="flex flex-row pt-4 capitalize gap-2">
+          <ul className="flex flex-row flex-wrap capitalize gap-x-2 gap-y-4">
             {details &&
               details.genres.map((genre, i) => {
                 return (
                   <li
-                    className="rounded-full px-4 py-1 outline outline-white text-sm"
+                    className="rounded-full px-4 py-2 truncate outline outline-white text-xs lg:text-sm"
                     key={i}
                   >
                     {genre.name}
@@ -97,45 +87,32 @@ const Detail = () => {
                 );
               })}
           </ul>
-          <div className="py-6">
-            <p className="line-clamp-4 ">
-              {/* Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Repudiandae, iusto adipisci? Consectetur accusamus sed illum ea
-              commodi optio repudiandae ipsam. Lorem ipsum dolor sit amet
-              consectetur, adipisicing elit. Pariatur, neque est dolore magnam
-              alias odio ea dicta. Magnam, tempora cupiditate? Lorem ipsum dolor
-              sit amet consectetur, adipisicing elit. Rem repellendus excepturi
-              odit, nisi ut dignissimos accusamus maxime id ratione error,
-              aliquid rerum, ex iste fugiat quaerat voluptas dolore distinctio
-              commodi? */}
-              {movie.overview || details.overview}
-            </p>
-          </div>
-          <div className="">
-            <h4 className="text-xl mb-2">casts</h4>
-            <ul className="flex flex-row items-end gap-2">
-              {credits.map((credit, i) => {
-                return (
-                  <li className="" key={i}>
-                    <div className="h-36 mx-auto ">
-                      <img
-                        src={`https://image.tmdb.org/t/p/w500/${credit.profile_path}`}
-                        // className=" bg-red-400 object-cover"
-                        className=" h-full w-full rounded-md object-contain object-center"
-                        alt={"film"}
-                      />
-                    </div>
-                    <div className="pt-2 h-12">
-                      <h4 className="overflow-hidden">{credit.name}</h4>
-                    </div>
-                  </li>
-                );
-              })}
-              {/* {cast}
-              {cast}
-              {cast} */}
-            </ul>
-          </div>
+          <p className="line-clamp-4 ">{details.overview || "no overview"}</p>
+        </div>
+        <div className="min-h-[15rem] mt-6">
+          <h4 className="text-xl mb-2">casts</h4>
+          <ul className="flex gap-x-2 flex-wrap">
+            {credits.map((credit, i) => {
+              return (
+                <li className="" key={i}>
+                  <div className="h-36 max-w-[6rem] mx-auto rounded-lg overflow-clip">
+                    <img
+                      src={
+                        credit.profile_path
+                          ? `https://image.tmdb.org/t/p/w500/${credit.profile_path}`
+                          : whiteBg
+                      }
+                      className="h-full w-full object-fill"
+                      alt={"film"}
+                    />
+                  </div>
+                  <div className="pt-2 max-w-[100px] overflow-hidden">
+                    <h4 className="">{credit.name}</h4>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </div>
     </div>

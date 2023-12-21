@@ -1,34 +1,51 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
-const MediaItems = ({ movie }) => {
+const cardVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
+};
+
+const MediaItems = ({ movie, topic }) => {
   return (
-    <div className="items-start h-auto overflow-hidden w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/6 flex flex-col">
-      <div className="h-80 mx-auto  hover:scale-110 cursor-pointer ">
-        <Link to={"/detail"} state={{ movie }}>
-          <img
+    <motion.div
+      variants={cardVariants}
+      initial="hidden"
+      // animate="visible"
+      exit="hidden"
+      whileInView="visible"
+      className="max-w-[220px] min-w-[220px]"
+    >
+      <motion.div className="h-80 cursor-pointer rounded-lg overflow-clip">
+        <Link
+          to={"/detail"}
+          state={{ id: movie.id, type: movie.media_type || topic }}
+        >
+          <motion.img
+            whileHover={{ scale: 1.1 }}
             src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-            // className=" bg-red-400 object-cover"
-            className=" h-full w-full rounded-xl  object-contain  object-center "
+            // src={`https://image.tmdb.org/t/p/w500/upmXGc1QovmPBU0mQJR2re6ruKd.jpg`}
+            className=" h-full w-full object-fill"
             alt={movie.title || movie.name}
           />
         </Link>
-      </div>
+      </motion.div>
       <div className="text-center py-4 mx-auto">
         <h4 className="text-ellipsis overflow-hidden">
           {movie.title || movie.name}
         </h4>
         <span className="block">
-          {/* ({movie.release_date.substr(0, 4)}) */}
           {movie.first_air_date || movie.release_date}
         </span>
         <span className="block">{movie.vote_average}</span>
       </div>
-    </div>
+    </motion.div>
   );
 };
 MediaItems.propTypes = {
   movie: PropTypes.object,
+  topic: PropTypes.string,
 };
 
 export default MediaItems;
