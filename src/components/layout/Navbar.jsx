@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-
-// import { FaMagnifyingGlass } from "react-icons/fa6";
+import Search from "../ui/Search";
 const NavBar = () => {
   return (
     <header>
@@ -8,13 +7,7 @@ const NavBar = () => {
         <h1 className="text-4xl uppercase tracking-wide text-rose-600 font-bold w-full">
           <Link to={"/"}>Cinemaku</Link>
         </h1>
-
-        <input
-          type="text"
-          className="py-2 px-4 w-full md:w-1/2 rounded-md outline-none text-black  hover:ring-2 hover:ring-rose-600 
-               focus:ring focus:ring-rose-600 "
-          placeholder="Search film..."
-        />
+        <Search />
       </nav>
     </header>
   );
