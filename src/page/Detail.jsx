@@ -6,6 +6,7 @@ import {
   getTvCredits,
   getTvDetails,
 } from "../api/mediaApi";
+import whiteBg from "../assets/White_background.png";
 
 const Detail = () => {
   const {
@@ -94,9 +95,13 @@ const Detail = () => {
             {credits.map((credit, i) => {
               return (
                 <li className="" key={i}>
-                  <div className="h-36 mx-auto rounded-lg overflow-clip">
+                  <div className="h-36 max-w-[6rem] mx-auto rounded-lg overflow-clip">
                     <img
-                      src={`https://image.tmdb.org/t/p/w500/${credit.profile_path}`}
+                      src={
+                        credit.profile_path
+                          ? `https://image.tmdb.org/t/p/w500/${credit.profile_path}`
+                          : whiteBg
+                      }
                       className="h-full w-full object-fill"
                       alt={"film"}
                     />
