@@ -4,11 +4,11 @@ import { getTrending, getMovie, getTv } from "../api/mediaApi";
 import MediaList from "../components/media/MediaList";
 
 const Main = () => {
-  const [tranding, setTrending] = useState([]);
+  const [trending, setTrending] = useState([]);
   const [movies, setMovies] = useState([]);
   const [tv, setTv] = useState([]);
   const contents = [
-    { topic: tranding, title: "tranding" },
+    { topic: trending, title: "trending" },
     { topic: movies, title: "movies" },
     { topic: tv, title: "tv" },
   ];
@@ -17,9 +17,9 @@ const Main = () => {
     getTrending()
       .then((res) => {
         isMounted = true;
-        const tranding = res.data.results.slice(0, 10);
+        const trending = res.data.results.slice(0, 10);
         // console.log({ tranding });
-        isMounted && setTrending(tranding);
+        isMounted && setTrending(trending);
       })
       .catch((e) => {
         console.log(e.toString());
@@ -47,18 +47,13 @@ const Main = () => {
 
     return () => (isMounted = false);
   }, []);
-  console.log({ tranding });
+  console.log({ trending });
   console.log({ movies });
   return (
     <div className="">
       {contents.map((content, i) => {
         return (
-          <MediaList
-            topic={content.topic}
-            title={content.title}
-            link={true}
-            key={i}
-          />
+          <MediaList topic={content.topic} title={content.title} key={i} />
         );
       })}
     </div>
