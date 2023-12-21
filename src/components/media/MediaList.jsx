@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useRef } from "react";
 
-const MediaList = ({ topic, title, link }) => {
+const MediaList = ({ topic, title }) => {
   const carousel = useRef(null);
 
   return (
@@ -16,9 +16,7 @@ const MediaList = ({ topic, title, link }) => {
         <Link
           to={"/seemore"}
           state={{ title }}
-          className={`text-sm cursor-pointer hover:text-rose-600 ${
-            link ? "" : "invisible"
-          }`}
+          className={`text-sm cursor-pointer hover:text-rose-600`}
         >
           see more
         </Link>
@@ -41,7 +39,6 @@ const MediaList = ({ topic, title, link }) => {
 MediaList.propTypes = {
   topic: PropTypes.array,
   title: PropTypes.string,
-  link: PropTypes.bool,
 };
 
 export default MediaList;
