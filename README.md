@@ -1,7 +1,5 @@
 # Cinemaku
 
-Simple website for you to find latest Movies or Tv series .
-
 Crafting CINEMAKU using React and Tailwind CSS was a rewarding journey. Overcoming challenges, from image ratios to animations, sharpened my coding skills and enhanced my design creativity and problem-solving. Each coding hurdle became an opportunity for growth, turning the project into a dynamic learning experience.  
 
 And the best part when developed this website, i find alot of fun movies and series 🤣.
